@@ -1,6 +1,9 @@
 package me.juc.thread;
 
-import javax.swing.plaf.TableHeaderUI;
+/**
+ * 手写自旋锁demo
+ */
+
 import java.util.concurrent.atomic.AtomicReference;
 
 public class SpinLockDemo {
@@ -10,7 +13,7 @@ public class SpinLockDemo {
     public  void myLock() {
         Thread thread = Thread.currentThread();
         System.out.println(Thread.currentThread().getName() + " come in myLock");
-        while (!atomicReference.compareAndSet(null,thread)){}
+        while (!atomicReference.compareAndSet(null,thread)){} // 当前原子引用不为空就自旋，指导赋值成功
     }
 
     public  void myUnLock(){
